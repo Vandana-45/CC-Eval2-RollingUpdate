@@ -400,15 +400,9 @@ flowchart LR
 
 The graph shows the number of healthy, available application replicas observed at each stage. The Deployment was configured with three replicas and `maxUnavailable: 0`.
 
-```mermaid
-xychart-beta
-    title "Healthy Available Replicas During Update and Rollback"
-    x-axis ["Initial", "Updated", "Faulty update", "After rollback"]
-    y-axis "Healthy available Pods" 0 --> 3
-    line [3, 3, 3, 3]
-```
+![Application Availability Graph](screenshots/09-application-availability.png)
 
-**Observation:** Three healthy replicas remained available at all four checkpoints. During the faulty update, the additional new Pod failed with `ErrImagePull`; it is not counted as a healthy available replica. After rollback, the Deployment returned to the working `nginx:1.28-alpine` image with three ready replicas.
+Observation: Three healthy replicas remained available at all four checkpoints. During the faulty update, the additional new Pod failed with `ErrImagePull`; it is not counted as a healthy available replica. After rollback, the Deployment returned to the working `nginx:1.28-alpine` image with three ready replicas.
 
 **Note:** This is an availability observation graph, not a response-time or throughput benchmark. No performance timings were collected in this experiment.
 
